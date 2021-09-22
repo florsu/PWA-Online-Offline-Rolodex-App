@@ -12,6 +12,7 @@ const findRecord = storedUserData.filter(item => item.id == userIDParam)
 let userRecord = findRecord[0]
 
 const populateForm = () => {
+    console.log(userRecord)
     const { id, address, company, email, name, phone, username, website } = userRecord
     const { name: companyName, catchPhrase } = company
     let { street, suite, city, zipcode } = address
