@@ -20,8 +20,9 @@ const handleSubmit = async (e) => {
 
 
 
-    let URL = 'https://jsonplaceholder.typicode.com/users'
+    let URL = 'https://my-json-server.typicode.com/florsu/PWA-Online-Offline-Rolodex-App/clients'
     let reqBody = {
+        id: nextId(),
         name: clientName,
         username: clientUsername,
         email: clientEmail,
@@ -52,6 +53,16 @@ const handleSubmit = async (e) => {
     localStorage.setItem('userData', JSON.stringify(storedUserData))
 
     window.location.href = './index.html'
+}
+
+function nextId() {
+    let id=0
+    for (let i = 0; i < storedUserData.length; i++) {
+       if (storedUserData[i].id >= id) {
+           id=storedUserData[i].id + 1
+       }
+      }
+    return id
 }
 
 
