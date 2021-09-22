@@ -9,6 +9,7 @@ export const createRolodexList = (allUserData) => {
 
 export const createRolodexCard = (userData) => {
     const container = querySelectElement('.container')
+    console.log(userData)
 
     const { id, company, name } = userData
     const { name: companyName, catchPhrase } = company
