@@ -60,6 +60,7 @@ const bundleUpdatedData = async (e) => {
     const hiddenClientID = e.target['InputUserId'].value
 
     let reqBody = {
+        id: parseInt(hiddenClientID),
         name: clientName,
         username: clientUsername,
         email: clientEmail,
@@ -74,15 +75,15 @@ const bundleUpdatedData = async (e) => {
         company: {
             name: clientCompany,
             catchPhrase: clientCatchPhrase,
-        },
-        hiddenID: hiddenClientID
+        }
     }
+    console.log(reqBody)
 
     postData(reqBody)
 }
 
 const postData = async (data) => {
-    let URL = 'https://jsonplaceholder.typicode.com/users/1'
+    let URL = `https://my-json-server.typicode.com/florsu/PWA-Online-Offline-Rolodex-App/clients/${data['id']}`
 
     let headers = {
         method: "PUT",
@@ -95,18 +96,18 @@ const postData = async (data) => {
 
         let recordsIndex = null
         const findRecord = storedUserData.filter((item, i) => {
-            if (item.id == data['hiddenID']) {
+            if (item.id == data['id']) {
                 recordsIndex = i
             }
-            return item.id == data['hiddenID']
+            return item.id == data['id']
         })
 
         // console.log(recordsIndex)
         let updatedUserRecord = findRecord[0]
-        // console.log(userRecord)
+        // console.log(updatedUserRecord)
 
         // Will need to be a splice
-        storedUserData.splice(recordsIndex, 1, json)
+        storedUserData.splice(recordsIndex, 1, data)
 
         localStorage.setItem('userData', JSON.stringify(storedUserData))
 
