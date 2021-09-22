@@ -11,7 +11,7 @@ export const getListOfUsers = async () => {
         console.log(JSON.stringify(json))
 
         localStorage.setItem('userData', JSON.stringify(json))
-        createRolodexList(storedUserData)
+        createRolodexList(json)
     } else {
         createRolodexList(storedUserData)
     }
